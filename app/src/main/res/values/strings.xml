@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">Permissions SOLID</string>
+    <string name="rationale_multiple_permission_description">To make a call, please grant the app permissions to access %1$s on your Android device.</string>
+    <string name="permanently_multiple_permissions_deny_description">It seems that you permanently denied %1$s permissions. To enable it, please go to your device settings, and grant it %1$s permissions in order to make a call.</string>
+</resources>
