@@ -7,13 +7,25 @@
     tools:context=".MainActivity">
 
     <Button
-        android:id="@+id/btnPermission"
+        android:id="@+id/btnCallPermissions"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Ask Multiple Permissions"
+        android:text="Ask Call Permissions"
+        app:layout_constraintBottom_toTopOf="@id/btnCameraPermissions"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_chainStyle="packed" />
+
+    <Button
+        android:id="@+id/btnCameraPermissions"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Ask Camera Permissions"
+        android:layout_margin="50dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@id/btnCallPermissions" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

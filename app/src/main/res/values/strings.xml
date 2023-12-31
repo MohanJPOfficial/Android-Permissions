@@ -1,5 +1,7 @@
 <resources>
     <string name="app_name">Permissions SOLID</string>
-    <string name="rationale_multiple_permission_description">To make a call, please grant the app permissions to access %1$s on your Android device.</string>
-    <string name="permanently_multiple_permissions_deny_description">It seems that you permanently denied %1$s permissions. To enable it, please go to your device settings, and grant it %1$s permissions in order to make a call.</string>
+    <string name="rationale_call_permissions_description">To make a call, please grant the app Phone and Microphone permissions to access Call on your Android device.</string>
+    <string name="permanently_call_permissions_deny_description">It seems that you permanently denied Phone and Microphone permissions. To enable it, please go to your device settings, and grant it Phone and Microphone permissions in order to make a call.</string>
+    <string name="rationale_camera_permissions_description">To capture a image or record a video, please grant the app Camera and Microphone permissions to access Camera and microphone on your Android device.</string>
+    <string name="permanently_camera_permissions_deny_description">It seems that you permanently denied Camera and Microphone permissions. To enable it, please go to your device settings, and grant it Camera and Microphone permissions in order to record a video.</string>
 </resources>

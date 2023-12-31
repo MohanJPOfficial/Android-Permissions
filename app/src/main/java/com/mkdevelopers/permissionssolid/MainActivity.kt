@@ -3,38 +3,45 @@ package com.mkdevelopers.permissionssolid
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import com.mkdevelopers.permissionssolid.databinding.ActivityMainBinding
-import com.mkdevelopers.permissionssolid.solid.AppPermission
-import com.mkdevelopers.permissionssolid.solid.MultiplePermissionHandlerImpl
-import com.mkdevelopers.permissionssolid.solid.PermissionHandler
-import com.mkdevelopers.permissionssolid.solid.PermissionResult
+import com.mkdevelopers.permissionssolid.solid.callpermissions.CallPermissions
+import com.mkdevelopers.permissionssolid.solid.camerapermissions.CameraPermissions
+import com.mkdevelopers.permissionssolid.solid.permissionhandler.PermissionHandler
+import com.mkdevelopers.permissionssolid.solid.permissionhandler.PermissionResult
 
 class MainActivity : AppCompatActivity() {
 
-    private val multiplePermissionHandler: PermissionHandler by lazy {
-        MultiplePermissionHandlerImpl(
-            this,
-            ::permissionResult
+    private val callPermissionsHandler: PermissionHandler by lazy {
+        CallPermissions(
+            activity         = this,
+            permissionResult = ::permissionResult
+        )
+    }
+
+    private val cameraPermissionHandler: PermissionHandler by lazy {
+        CameraPermissions(
+            activity         = this,
+            permissionResult = ::permissionResult
         )
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        lifecycle.addObserver(multiplePermissionHandler)
-        multiplePermissionHandler.onViewCreated()
+        lifecycle.addObserver(callPermissionsHandler)
+        lifecycle.addObserver(cameraPermissionHandler)
+
+        callPermissionsHandler.onViewCreated()
+        cameraPermissionHandler.onViewCreated()
 
         val binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        binding.btnPermission.setOnClickListener {
+        binding.btnCallPermissions.setOnClickListener {
+            callPermissionsHandler.requestPermissions()
+        }
 
-            val permissionsList = listOf(AppPermission.CALL, AppPermission.CAMERA, AppPermission.RECORD_AUDIO)
-
-            multiplePermissionHandler.requestPermissions(
-                permissionsList,
-                R.string.rationale_multiple_permission_description,
-                R.string.permanently_multiple_permissions_deny_description
-            )
+        binding.btnCameraPermissions.setOnClickListener {
+            cameraPermissionHandler.requestPermissions()
         }
     }
 
@@ -47,6 +54,7 @@ class MainActivity : AppCompatActivity() {
 
     override fun onDestroy() {
         super.onDestroy()
-        lifecycle.removeObserver(multiplePermissionHandler)
+        lifecycle.removeObserver(callPermissionsHandler)
+        lifecycle.removeObserver(cameraPermissionHandler)
     }
 }
